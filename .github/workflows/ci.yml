@@ -1,0 +1,18 @@
+name: "C/I"
+on:
+  push: {}
+jobs:
+  ci:
+    name: "C/I"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "fetch"
+        uses: actions/checkout@v3
+      
+      - name: "prepare"
+        run: chmod +x configure
+
+      - name: "build"
+        run: ./configure
+        env:
+          CI: ${{ secrets.CI }}
